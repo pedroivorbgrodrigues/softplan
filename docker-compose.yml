@@ -1,0 +1,23 @@
+version: '3.2'
+#no windows não aceita mapear caminho aparentemente, usando volume nomeado ao inves disso.
+volumes:
+  mongo-data: {}
+services:
+  app:
+    container_name: app
+    restart: always
+    build: .
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./server:/user/server
+    links:
+      - mongo
+  mongo:
+    container_name: mongo
+    image: mongo
+    user: root
+    volumes:
+      - mongo-data:/data/db
+    ports:
+      - '27017:27017'

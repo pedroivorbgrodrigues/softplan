@@ -1,0 +1,41 @@
+{
+  "name": "softplan-api",
+  "version": "1.0.0",
+  "description": "API da agenda telefonica",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "watch": "nodemon -L server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pedroivorbgrodrigues/softplan.git"
+  },
+  "keywords": [
+    "api",
+    "expressjs",
+    "jwt",
+    "mongodb",
+    "mongoose",
+    "docker",
+    "nodejs"
+  ],
+  "author": "Pedro Ivo Galimberti",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pedroivorbgrodrigues/softplan/issues"
+  },
+  "homepage": "https://github.com/pedroivorbgrodrigues/softplan#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongoose": "^5.3.12"
+  },
+  "devDependencies": {
+    "eslint": "^5.9.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "nodemon": "^1.18.6"
+  }
+}
