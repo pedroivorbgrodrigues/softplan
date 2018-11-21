@@ -1,7 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const path = require('path');
+const cors = require('cors');
 const api = require('./routes/api');
+
 const { MONGO_CONNECTION_STRING } = require('./constants');
 
 const PORT = 3000;
@@ -12,9 +15,13 @@ mongoose
   .catch(err => console.log(err));
 
 const app = express();
+app.use(cors());
 app.use(bodyParser.json());
 app.use('/api', api);
-app.use('/', express.static('./static'));
+app.use(express.static(path.join(__dirname, 'static')));
+app.use((req, res) => {
+  res.render('index');
+});
 app.use((err, req, res, next) => {
   if (res.headersSent) {
     return next(err);

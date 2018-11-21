@@ -1,4 +1,0 @@
-#server ignore
-server/node_modules
-server/data
-#client ignore
