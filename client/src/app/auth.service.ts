@@ -5,18 +5,26 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AuthService {
-  private _apiUrl = 'http://localhost:3000/api';
+  private _authUrl = 'http://localhost:3000/api/auth';
   constructor(private http: HttpClient) { }
 
   loginWithCode(code) {
-    return this.http.post<any>(`${this._apiUrl}/login`, code);
+    return this.http.post<any>(`${this._authUrl}/login`, code);
   }
 
   registerCode(code) {
-    return this.http.post<any>(`${this._apiUrl}/register`, code);
+    return this.http.post<any>(`${this._authUrl}/register`, code);
+  }
+
+  getToken() {
+    return localStorage.getItem('token');
+  }
+
+  logout() {
+    localStorage.removeItem('token');
   }
 
   isLoggedIn() {
-    return !!localStorage.getItem('token');
+    return !!this.getToken();
   }
 }
