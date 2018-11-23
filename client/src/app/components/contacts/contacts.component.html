@@ -1,9 +1,16 @@
 <div class="button-row">
-    <button mat-raised-button (click)="createDialog()">NOVO CONTATO</button>
+  <button mat-raised-button (click)="createDialog()">NOVO CONTATO</button>
 </div>
-<mat-card *ngFor="let contact of contacts">
+<div class="search-row">
+  <mat-form-field [formGroup]="form">
+    <mat-label>Pesquisar contatos</mat-label>
+    <input matInput placeholder="Digite para pesquisar por nome ou telefone..." formControlName="searchTerm" />
+  </mat-form-field>
+</div>
+<mat-card *ngFor="let contact of filtered">
   <mat-card-title>{{ contact.name }}</mat-card-title>
-  <mat-card-subtitle *ngIf="contact.job || contact.company">Professional:
+  <mat-card-subtitle *ngIf="contact.job || contact.company">
+    <span>Professional: </span>
     <span *ngIf="contact.job">{{ contact.job }}</span>
     <span *ngIf="contact.company">@ {{ contact.company }}</span>
   </mat-card-subtitle>
@@ -18,7 +25,11 @@
     </div>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-icon-button (click)="delete(contact.id)"><mat-icon aria-label="Remove contact">delete</mat-icon></button>
-    <button mat-icon-button (click)="editDialog(contact)"><mat-icon aria-label="Edit contact">edit</mat-icon></button>
+    <button mat-icon-button (click)="delete(contact.id)">
+      <mat-icon aria-label="Remove contact">delete</mat-icon>
+    </button>
+    <button mat-icon-button (click)="editDialog(contact)">
+      <mat-icon aria-label="Edit contact">edit</mat-icon>
+    </button>
   </mat-card-actions>
 </mat-card>

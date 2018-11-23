@@ -1,6 +1,9 @@
 import { Observable } from 'rxjs';
-import { MatDialog, MatSnackBar } from '@angular/material';
+import { debounceTime } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+import { MatDialog, MatSnackBar } from '@angular/material';
+
 import ContactModel from '../../models/contact.model';
 import { ContactFormDialogComponent } from '../contact-form-dialog/contact-form.dialog';
 import { ContactService } from '../../services/contact.service';
@@ -12,16 +15,36 @@ import { ContactService } from '../../services/contact.service';
 })
 export class ContactsComponent implements OnInit {
   contacts: ContactModel[] = [];
+  filtered: ContactModel[] = [];
+  form: FormGroup;
   constructor(public dialog: MatDialog, public snackBar: MatSnackBar, private _contacts: ContactService) { }
 
   ngOnInit() {
+    this.form = new FormGroup({
+      searchTerm: new FormControl('')
+    });
     this._getAllContacts();
+    this._watchSearchTerm();
+  }
+
+  private _watchSearchTerm() {
+    this.form.get('searchTerm').valueChanges.pipe(debounceTime(200))
+      .subscribe((value) => {
+        const searchTerm = value.trim().toLowerCase();
+        this.filtered = this.contacts.filter(contact => {
+          const nameContains = contact.name.toLowerCase().indexOf(searchTerm.toLowerCase() ) > -1;
+          const phoneContains = contact.phone.toString().indexOf(searchTerm) > -1;
+          return nameContains || phoneContains;
+        });
+      });
   }
 
   private _getAllContacts() {
     this._contacts.getAll()
       .subscribe(response => {
         this.contacts = response.payload.map(contact => ContactModel.fromDatabaseModel(contact));
+        // display everything on load, could add a observer for the component to trigger the search too
+        this.filtered = this.contacts;
       }, response => this._showMessage(response.error.message));
   }
 
