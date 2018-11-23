@@ -6,5 +6,5 @@ const router = express.Router();
 
 router.get('/', (req, res) => res.send('API'));// send static swagger generated documentation
 router.use('/auth', authRoutes);
-router.use('/contact', contactsRoutes);
+router.use('/contacts', contactsRoutes);
 module.exports = router;

@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 app.use('/api', api);
 app.use(express.static(path.join(__dirname, 'static')));
 app.use((req, res) => {
-  res.render('index');
+  res.status(404).json({ message: 'You lost mate?' });
 });
 app.use((err, req, res, next) => {
   if (res.headersSent) {

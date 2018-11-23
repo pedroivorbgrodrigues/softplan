@@ -1,0 +1,30 @@
+:host {
+  width: 100%;
+  height: auto;
+  align-self: baseline;
+}
+
+mat-card {
+  margin: 1em;
+}
+
+mat-card-actions {
+  text-align: right;
+}
+
+.button-row {
+  margin: 1em;
+  text-align: right;
+}
+
+.info-block {
+  line-height: 24px;
+  margin-bottom: 0.5em;
+  > div {
+    display: inline-block;
+  }
+  mat-icon {
+    float: left;
+    margin-right: 0.5em;
+  }
+}

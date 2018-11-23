@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
-import { AuthService } from '../auth.service';
+// services
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -33,12 +34,12 @@ export class AuthComponent implements OnInit {
 
   registerCode() {
     this._auth.registerCode(this.formData)
-      .subscribe(this._handleSuccess.bind(this), (response) => this._showMessage(response.error.message));
+      .subscribe(this._handleSuccess.bind(this), response => this._showMessage(response.error.message));
   }
 
   loginWithCode() {
     this._auth.loginWithCode(this.formData)
-      .subscribe(this._handleSuccess.bind(this), (response) => this._showMessage(response.error.message));
+      .subscribe(this._handleSuccess.bind(this), response => this._showMessage(response.error.message));
   }
 
 }

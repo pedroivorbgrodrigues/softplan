@@ -1,0 +1,24 @@
+<div class="button-row">
+    <button mat-raised-button (click)="createDialog()">NOVO CONTATO</button>
+</div>
+<mat-card *ngFor="let contact of contacts">
+  <mat-card-title>{{ contact.name }}</mat-card-title>
+  <mat-card-subtitle *ngIf="contact.job || contact.company">Professional:
+    <span *ngIf="contact.job">{{ contact.job }}</span>
+    <span *ngIf="contact.company">@ {{ contact.company }}</span>
+  </mat-card-subtitle>
+  <mat-card-content>
+    <div class="info-block">
+      <mat-icon>phone</mat-icon>
+      <div>Telefone: {{ contact.phone | mask: '(00) 00000-0000' }}</div>
+    </div>
+    <div class="info-block" *ngIf="contact.email">
+      <mat-icon>mail_outline</mat-icon>
+      <div>E-mail: {{ contact.email }}</div>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-icon-button (click)="delete(contact.id)"><mat-icon aria-label="Remove contact">delete</mat-icon></button>
+    <button mat-icon-button (click)="editDialog(contact)"><mat-icon aria-label="Edit contact">edit</mat-icon></button>
+  </mat-card-actions>
+</mat-card>
