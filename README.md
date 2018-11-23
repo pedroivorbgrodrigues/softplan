@@ -1,9 +1,3 @@
-# TODO:
-
-* Validação forms
-* Testes e2e
-* Estilo próprio
-
 # I - APLICAÇÃO:
 
 ## Construir uma "Agenda Telefônica" que permita que somente usuários autenticados tenham acesso/mantenham contatos.
