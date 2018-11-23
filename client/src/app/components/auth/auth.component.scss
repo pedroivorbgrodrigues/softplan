@@ -1,5 +1,11 @@
+:host {
+  display: flex;
+  flex: 1;
+  align-items: center;
+}
+
 .form {
-  min-width: 400px;
+  min-width: 300px;
   max-width: 80%;
   width: 100%;
   margin: auto;

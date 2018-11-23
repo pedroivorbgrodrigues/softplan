@@ -1,0 +1,17 @@
+:host {
+  display: flex;
+  columns: 1;
+  flex-wrap: wrap;
+}
+
+header {
+  min-height: 100px;
+  width: 100%;
+  display: flex;
+}
+
+section.content {
+  max-height: 80vh;
+  width: 100%;
+  display: flex;
+}

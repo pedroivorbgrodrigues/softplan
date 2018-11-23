@@ -3,14 +3,22 @@ version: '3.2'
 volumes:
   mongo-data: {}
 services:
-  app:
-    container_name: app
-    restart: always
-    build: .
+  client:
+    container_name: client
+    build: client
+    ports:
+      - '4200:4200'
+    # volumes:
+    #   - ./client/src:/usr/client/src
+    links:
+      - server
+  server:
+    container_name: server
+    build: server
     ports:
       - '3000:3000'
-    volumes:
-      - ./server:/user/server
+    # volumes:
+    #   - ./server:/usr/server
     links:
       - mongo
   mongo:
